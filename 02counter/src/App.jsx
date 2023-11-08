@@ -9,7 +9,17 @@ function App() {
 
   const addValue = () => {
     console.log("clicked", Math.random());
-    setCounter(counter+1)
+    // setCounter(counter+1)
+    // setCounter(counter+1)
+    // setCounter(counter+1)
+    // setCounter(counter+1)
+    // setCounter(counter+1) // counter should increase by 5, BUT, the diffing algo of react (fiber) sees this as one batch and only updates counter by 1
+    // use below format instead
+    setCounter(prevCounter => prevCounter+1)
+    setCounter(prevCounter => prevCounter+1)
+    setCounter(prevCounter => prevCounter+1)
+    setCounter(prevCounter => prevCounter+1)
+    setCounter(prevCounter => prevCounter+1)
   }
 
   const decreaseValue = () => {
