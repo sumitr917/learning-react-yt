@@ -3,7 +3,8 @@ import useStateInfo from './hooks/useStatesInfo'
 import useDistrictInfo from './hooks/useDistrictInfo'
 
 function App() {
-  const [selectedState, setSelectedState] = useState('')
+  const [selectedState, setSelectedState] = useState('Andhra Pradesh')
+  const [selectedDistrict, setSelectedDistrict] = useState('Anantapur')
 
   const statesList = useStateInfo()
   const districts = useDistrictInfo(selectedState)
@@ -11,6 +12,11 @@ function App() {
   // console.log(districts)
   function onSelectedStateChange(state){
     setSelectedState(state)
+    setSelectedDistrict('')
+  }
+
+  function onSelectedDistrictChange(district){
+    setSelectedDistrict(district)
   }
 
   return (
@@ -26,15 +32,23 @@ function App() {
           )
         }
       </select>
-      <ul>
+      <br/>
+      <br/>
+      <select value={selectedDistrict} onChange={(e)=> onSelectedDistrictChange(e.target.value)}>
         {
           districts && districts.map((district)=>(
-            <li key={district}>
+            <option key={district} value={district}>
               {district}
-            </li>
+            </option>
           ))
         }
-      </ul>
+      </select>
+      <br/>
+      <br/>
+      <p>
+        The selected state is {selectedState} and selected district is {selectedDistrict}
+      </p>
+
     </>
   )
 }
